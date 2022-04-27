@@ -11,12 +11,15 @@
 
 <body>
     <main>
+        <h1>Keyboard Accessible Drag-and-Drop</h1>
+        <p>Use TAB to move from item to item, SPACE to select items and ENTER to drop.</p>
         <section>
-            <article class="empty">
-                <div class="fill" draggable="true"></div>
+            <article data-draggable="target" data-draggable="item" class="empty" data-drop-target>
+                <span data-draggable="item" class="fill" draggable="true">blokje</span>
             </article>
-            <article class="empty"></article>
-            <article class="empty"></article>
+
+            <article data-draggable="target" class="empty" data-drop-target></article>
+            <article data-draggable="target" class="empty" data-drop-target></article>
         </section>
     </main>
     <!-- footer -->
