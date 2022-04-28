@@ -36,7 +36,7 @@ section{
 {
 	outline:none;
 	
-	box-shadow:0 0 0 1px #fff, 0 0 0 3px #68b;
+	box-shadow:0 0 0 1px #fff, 0 0 0 3px rgb(207, 69, 54);
 }
 
 /* draggable items */
@@ -54,7 +54,7 @@ section{
 {
 	outline:none;
 	
-	box-shadow:0 0 0 2px #68b, inset 0 0 0 1px #ddd;
+	box-shadow:0 0 0 2px rgb(20, 156, 45), inset 0 0 0 1px #ddd;
 }
 
 /* items grabbed state */
