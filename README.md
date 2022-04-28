@@ -1,29 +1,32 @@
 # Human Centered Design @cmda-minor-web 2021 - 2022
 
-Human Centered Design is een  methode voor het ontwerpen van gebruiksvriendelijke interactieve toepassingen.
+Human Centered Design is een methode voor het ontwerpen van gebruiksvriendelijke interactieve toepassingen.
 
 > What distinguishes Human-Centered Design from other problem-solving approaches is its obsessive focus on understanding the perspective of the person who experiences a problem, their needs, and whether the solution that has been designed for them is truly meeting their needs effectively or not. At its most effective, the very people who experience a problem the most are a constant part of the design process and when possible, become part of the design team itself. - [What Is Human-Centered Design?](https://medium.com/dc-design/what-is-human-centered-design-6711c09e2779)
 
-Door regelmatig te testen met je doelgroep kom je tot een beter en passend ontwerp. 
-Een Frontend Designer en Developer heeft verstand van interactie, vormgeving én techniek. 
+Door regelmatig te testen met je doelgroep kom je tot een beter en passend ontwerp.
+Een Frontend Designer en Developer heeft verstand van interactie, vormgeving én techniek.
 Als je web technieken beheerst kun je je ideeën snel prototypen en testen in een browser. Je kan dan aanpassingen doorvoeren, uitproberen en weer testen ...
-        
-In het vak Human Centered Design gaan we dingen ontwerpen voor echte mensen. 
-Is er goede interactie? Kan je 'mens' je product op een prettige manier bedienen? 
+
+In het vak Human Centered Design gaan we dingen ontwerpen voor echte mensen.
+Is er goede interactie? Kan je 'mens' je product op een prettige manier bedienen?
 Wat voor principes heb je gebruikt en getest? En is het leuk?
 
 ## Opdracht
 
+[demo 1](https://hoa0.github.io/human-centered-design-2122/week-1/)
+[demo 2](https://hoa0.github.io/human-centered-design-2122/week-2/)
+
 ### Ontwerpen met en voor echte mensen
 
-Voor dit vak krijg je een ontwerp-opdracht die je gaat maken voor 1 mens. 
-Een echt mens. 
-Je moet je ontwerp 3 keer testen. 
-Door te testen en te itereren ga je je ontwerp verbeteren. 
-Uiteindelijk heb je een ontwerp dat exclusief gemaakt is voor 1 persoon. 
-Een _exclusive design_ ... 
-Wie is deze persoon dan voor wie je dit gaat maken? 
-Wat vindt deze persoon leuk of juist niet? 
+Voor dit vak krijg je een ontwerp-opdracht die je gaat maken voor 1 mens.
+Een echt mens.
+Je moet je ontwerp 3 keer testen.
+Door te testen en te itereren ga je je ontwerp verbeteren.
+Uiteindelijk heb je een ontwerp dat exclusief gemaakt is voor 1 persoon.
+Een _exclusive design_ ...
+Wie is deze persoon dan voor wie je dit gaat maken?
+Wat vindt deze persoon leuk of juist niet?
 En hoe bedient deze persoon een computer?
 
 - [Opdracht - Ontwerpen met en voor echte mensen](course/opdracht-human-centered-design.md)
@@ -38,15 +41,14 @@ En hoe bedient deze persoon een computer?
 
 ## Planning & programma
 
-| Planning  | Woensdag  |  Donderdag | Vrijdag  |
-|---|---|---|---|
-| [Week 1](#week-1---kickoff-en-aannames-testen)  | Intro, College exclusive design + Testen | College + Testen | Feedbackgesprekken |
-| [Week 2](#week-2---prototypen-en-testen)  | ~~Koningsdag~~  | College + Testen | Feedbackgesprekken  |
-| ~~Meivakantie~~ |   |  |   |
-| [Week 3](#week-3---prototypen-testen-en-reflecteren)  | College + Testen  |  College + Testen | Beoordelingsgesprekken  |
+| Planning                                             | Woensdag                                 | Donderdag        | Vrijdag                |
+| ---------------------------------------------------- | ---------------------------------------- | ---------------- | ---------------------- |
+| [Week 1](#week-1---kickoff-en-aannames-testen)       | Intro, College exclusive design + Testen | College + Testen | Feedbackgesprekken     |
+| [Week 2](#week-2---prototypen-en-testen)             | ~~Koningsdag~~                           | College + Testen | Feedbackgesprekken     |
+| ~~Meivakantie~~                                      |                                          |                  |                        |
+| [Week 3](#week-3---prototypen-testen-en-reflecteren) | College + Testen                         | College + Testen | Beoordelingsgesprekken |
 
-
-## Week 1 - Kickoff en aannames testen 
+## Week 1 - Kickoff en aannames testen
 
 Deze week krijg je een college over _Exclusive Design Principles_. Deze Principles ga je toepassen in de opdracht. Op woensdag en donderdag gaan we kennis maken met de echte mensen voor wie we gaan ontwerpen. Je kan dan al een kleine interactieve demo maken om te testen.
 
@@ -66,8 +68,7 @@ Daarna prototypen en testen.
 
 Feedbackgesprekken in groepen.
 
-
-## Week 2 - Prototypen en testen 
+## Week 2 - Prototypen en testen
 
 Deze week heb je het tweede gesprek met je mens. Wat ga je testen? Wat wil je weten? Woensdag is het koningsdag, dan is er geen les.
 
@@ -81,7 +82,6 @@ Donderdag krijg je een college over testen. Voor deze les moet je het artikel [1
 
 Feedbackgesprekken in groepen.
 
-
 ## Week 3 - Prototypen, testen en reflecteren
 
 In week 3 gaan we verder met testen, itereren en reflecteren. Deze week is de laatste sessie met je mens.
@@ -94,31 +94,25 @@ Daarna prototypen en testen.
 
 ### Donderdag 12 mei
 
-Donderdag gaan we bevindingen van de tests bespreken. 
+Donderdag gaan we bevindingen van de tests bespreken.
 
 Daarna prototypen en testen.
 
 ### Vrijdag 13 mei
 
-Op vrijdag zijn de beoordelingsgesprekken. Je hebt dan een gesprek waarin we je vorderingen en bevindingen bespreekt. We verwachten dat je op Github je tests en iteraties hebt beschreven. Belangrijk is dat je reflecteert op de leerdoelen van het vak. 
-
-
+Op vrijdag zijn de beoordelingsgesprekken. Je hebt dan een gesprek waarin we je vorderingen en bevindingen bespreekt. We verwachten dat je op Github je tests en iteraties hebt beschreven. Belangrijk is dat je reflecteert op de leerdoelen van het vak.
 
 ## Rubric
 
-De opdracht wordt beoordeeld aan de hand van onderstaande rubric. Je moet slagen voor het criterium (middenkolom) om het vak te halen. 
+De opdracht wordt beoordeeld aan de hand van onderstaande rubric. Je moet slagen voor het criterium (middenkolom) om het vak te halen.
 
-| Ontoereikend  | Criteria  |  Verbetering |
-|---|---|---|
-|  | Readme - In de beschrijving van het project staat de opdracht uitgelegd, is het probleem duidelijk beschreven en hoe het probleem is opgelost. | | 
-|  | Design Principles - Student laat zien hoe de Exclusive Design Principles zijn toegepast in het ontwerp. De principes study situation, prioritise identity, ignore conventions en add nonsense zijn goed uitgelegd. Aan de hand van de principes wordt duidelijk gemaakt hoe deze hebben bijgedragen aan het verbeteren van het ontwerp. | | 
-|  | User Needs - Er is een user scenario geschreven dat aansluit bij de identiteit van de test persoon. Er is een duidelijk en volledig user scenario geschreven dat antwoord geeft op de 4 w-vragen: Who? What? How? en Why? | | 
-|  | Testen - Er is minimaal drie keer getest. Er is een verslaglegging van de tests gedaan waarin de test-opzet wordt behandeld en er is een duidelijke conclusie beschreven met do's en dont's over hoe je goed kan testen. | | 
-|  | Testresultaten - Aan de hand van de tests wordt duidelijk gemaakt hoe deze hebben bijgedragen aan het verbeteren van het ontwerp of hoe dit een volgende keer beter of anders kan. | | 
-
-
-
-
+| Ontoereikend | Criteria                                                                                                                                                                                                                                                                                                                                | Verbetering |
+| ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+|              | Readme - In de beschrijving van het project staat de opdracht uitgelegd, is het probleem duidelijk beschreven en hoe het probleem is opgelost.                                                                                                                                                                                          |             |
+|              | Design Principles - Student laat zien hoe de Exclusive Design Principles zijn toegepast in het ontwerp. De principes study situation, prioritise identity, ignore conventions en add nonsense zijn goed uitgelegd. Aan de hand van de principes wordt duidelijk gemaakt hoe deze hebben bijgedragen aan het verbeteren van het ontwerp. |             |
+|              | User Needs - Er is een user scenario geschreven dat aansluit bij de identiteit van de test persoon. Er is een duidelijk en volledig user scenario geschreven dat antwoord geeft op de 4 w-vragen: Who? What? How? en Why?                                                                                                               |             |
+|              | Testen - Er is minimaal drie keer getest. Er is een verslaglegging van de tests gedaan waarin de test-opzet wordt behandeld en er is een duidelijke conclusie beschreven met do's en dont's over hoe je goed kan testen.                                                                                                                |             |
+|              | Testresultaten - Aan de hand van de tests wordt duidelijk gemaakt hoe deze hebben bijgedragen aan het verbeteren van het ontwerp of hoe dit een volgende keer beter of anders kan.                                                                                                                                                      |             |
 
 <!-- Add a link to your live demo in Github Pages 🌐-->
 
