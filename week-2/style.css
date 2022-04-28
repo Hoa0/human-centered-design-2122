@@ -3,6 +3,10 @@ section{
     display: flex;
 }
 
+li, span{
+	font-weight: bold;
+}
+
 /* draggable targets - article container*/
 [data-draggable="target"]
 {
