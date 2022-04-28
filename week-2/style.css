@@ -63,3 +63,8 @@ section{
 	background:#8ad;
 	color:#fff;
 }
+
+span:hover{
+    background-color: antiquewhite;
+    cursor: pointer;
+}
