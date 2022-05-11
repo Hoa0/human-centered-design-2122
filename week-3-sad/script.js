@@ -35,7 +35,7 @@ function getElementsByClassName(objElement, strTagName, strClassName)
 var drag = {
 	objCurrent : null,
 
-	arTargets : ['Fav', 'Tol', 'Rej'],
+	arTargets : ['Tak', 'Maa', 'Din'],
 
 	initialise : function(objNode)
 	{
@@ -51,7 +51,7 @@ var drag = {
 		objEvent = objEvent || window.event;
 		drag.objCurrent = this;
 		var arChoices = ['Takenlijst', 'Maandag', 'Dinsdag'];
-		//var arChoices = ['Favourite artists', 'Tolerable artists', 'Rejected artists'];
+		// var arChoices = ['Favourite artists', 'Tolerable artists', 'Rejected artists'];
 		var iKey = objEvent.keyCode;
 		var objItem = drag.objCurrent;
 
@@ -59,8 +59,8 @@ var drag = {
 			var objMenu, objChoice, iCounter;
 
 			if (iKey == 32)
-			{
-				document.onkeydown = function(){return objEvent.keyCode==38 || objEvent.keyCode==40 ? false : true;};
+			{// 74 J - 75 K
+				document.onkeydown = function(){return objEvent.keyCode==74 || objEvent.keyCode==75 ? false : true;};
 				// Set ARIA properties
 				drag.objCurrent.setAttribute('aria-grabbed', 'true');
 				drag.objCurrent.setAttribute('aria-owns', 'popup');
@@ -129,7 +129,7 @@ var drag = {
 
 		switch (iKey)
 		{
-			case 38 : // Down arrow
+			case 74 : // Down arrow
 				objFocus = objItem.nextSibling;
 				if (!objFocus)
 				{
@@ -139,7 +139,7 @@ var drag = {
 				objFocus.focus();
 				objFocus.className = 'focus';
 				break;
-			case 40 : // Up arrow
+			case 75 : // Up arrow
 				objFocus = objItem.previousSibling;
 				if (!objFocus)
 				{
@@ -393,3 +393,4 @@ function init ()
 }
 
 window.onload = init;
+
