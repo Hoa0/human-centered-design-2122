@@ -561,7 +561,7 @@
         {
             //Enter or control(Modifier) + M is the drop keystroke
             //if(e.keyCode == 13 || (e.keyCode == 77 && hasModifier(e)))
-            if(e.keyCode == 72 || e.keyCode == 74 || e.keyCode == 75 || e.keyCode == 76)
+            if(e.keyCode == 65 || e.keyCode == 68 || e.keyCode == 83 ) // asd drop
             {
                 //append the selected items to the end of the target container
                 for(var len = selections.items.length, i = 0; i < len; i ++)
@@ -597,17 +597,17 @@
         list.firstElementChild.offsetWidth
       );
   var codes = {
-   /* 38: -amount,
-    40: amount, 
-    39: 1,
-    37: -1*/
-     37:-1,
-    39: 1
+   /* 
+    72 = h - links
+    76 = l - rechts
+    */
+     72:-1, 
+    76: 1
   };
   for (var i = 0; i < items.length; i++) {
     items[i].index = i;
   }
-  function handlekeys(ev) {
+  function handlekeysss(ev) {
     var keycode = ev.keyCode;
     if (codes[keycode]) {
       var t = ev.target;
@@ -618,7 +618,7 @@
       }
     }
   }
-  list.addEventListener('keyup', handlekeys);
+  list.addEventListener('keyup', handlekeysss);
 })();
 
 // up -> down
@@ -630,14 +630,10 @@
         list.firstElementChild.offsetWidth
       );
   var codes = {
-   /* 38: -amount,
-    40: amount, 
-    39: 1,
-    37: -1*/
     // w 87, e 69, r 82 - up
     // a 65, s 83, d 68 - down
-     87: -1, 69: -1, 82: -1,
-    65: 1, 83: 1, 68: 1
+     74: -1,
+    75: 1
   };
   for (var i = 0; i < items.length; i++) {
     items[i].index = i;

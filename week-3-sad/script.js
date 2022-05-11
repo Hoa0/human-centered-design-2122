@@ -52,7 +52,6 @@ var drag = {
 		drag.objCurrent = this;
 		var arChoices = ['Takenlijst', 'Maandag', 'Dinsdag'];
 		//var arChoices = ['Favourite artists', 'Tolerable artists', 'Rejected artists'];
-		
 		var iKey = objEvent.keyCode;
 		var objItem = drag.objCurrent;
 
