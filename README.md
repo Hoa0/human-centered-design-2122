@@ -16,6 +16,7 @@ Wat voor principes heb je gebruikt en getest? En is het leuk?
 
 [demo 1](https://hoa0.github.io/human-centered-design-2122/week-1/)
 [demo 2](https://hoa0.github.io/human-centered-design-2122/week-2/)
+[demo 3](https://hoa0.github.io/human-centered-design-2122/week-3-v2/)
 
 ### Ontwerpen met en voor echte mensen
 
