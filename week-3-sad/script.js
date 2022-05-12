@@ -58,8 +58,8 @@ let drag = {
 			let objMenu, objChoice, iCounter;
 
 			if (iKey == 32)
-			{// 74 J - 75 K
-				document.onkeydown = function(){return objEvent.keyCode==74 || objEvent.keyCode==75 ? false : true;};
+			{// 72 H, 74 J - 75 K, 76 L
+				document.onkeydown = function(){return objEvent.keyCode==72 || objEvent.keyCode==74 || objEvent.keyCode==75 || objEvent.keyCode==76 ? false : true;};
 				// Set ARIA properties
 				drag.objCurrent.setAttribute('aria-grabbed', 'true');
 				drag.objCurrent.setAttribute('aria-owns', 'popup');
@@ -129,7 +129,7 @@ let drag = {
 
 		switch (iKey)
 		{
-			case 74 : // Down arrow
+			case 72 : // Down arrow h
 				objFocus = objItem.nextSibling;
 				if (!objFocus)
 				{
@@ -139,7 +139,27 @@ let drag = {
 				objFocus.focus();
 				objFocus.className = 'focus';
 				break;
-			case 75 : // Up arrow
+			case 74 : // Down arrow j
+				objFocus = objItem.nextSibling;
+				if (!objFocus)
+				{
+					objFocus = objItem.previousSibling;
+				}
+				objItem.className = '';
+				objFocus.focus();
+				objFocus.className = 'focus';
+				break;
+			case 75 : // Up arrow k
+				objFocus = objItem.previousSibling;
+				if (!objFocus)
+				{
+					objFocus = objItem.nextSibling;
+				}
+				objItem.className = '';
+				objFocus.focus();
+				objFocus.className = 'focus';
+				break;
+			case 76 : // Up arrow l
 				objFocus = objItem.previousSibling;
 				if (!objFocus)
 				{
@@ -362,7 +382,8 @@ let drag = {
     
      addList = document.createElement('li'); // create li node
     let itemText = document.createTextNode(input.value); // create text node
-    
+    addList.setAttribute('aria-draggable', true)
+    addList.setAttribute('tabindex', '0')
     addList.appendChild(itemText); // append text node to li node
     list.appendChild(addList); // append li node to list
     input.value = ""; // clear input
