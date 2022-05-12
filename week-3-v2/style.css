@@ -222,6 +222,22 @@ li input#text{
 background-color: #cc9;
 }
 
+section:first-of-type>section:first-of-type{
+	display: block;
+}
 
+/*
+icon smile
+*/
+h2#Acth::after{
+	content:'☺';
+    margin-left: 0.5em;
+    color: #fc0;
+    font-size: 1.5em;
+}
+
+footer{
+	text-align: center;
+}
 
 

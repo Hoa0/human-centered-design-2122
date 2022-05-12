@@ -374,6 +374,7 @@ let drag = {
 	}
 };
 // add activities to list
+/*
 (function () {
 	let addList = getElementsByClassName(document, 'li', 'draggable');
   document.querySelector('#add').addEventListener('click', function () {
@@ -389,7 +390,7 @@ let drag = {
     input.value = ""; // clear input
 	 addList.classList.add('draggable');
   });
-})();
+})();*/
 function init ()
 {
 	let objItems = getElementsByClassName(document, 'li', 'draggable');
