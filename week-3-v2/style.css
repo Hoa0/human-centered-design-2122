@@ -2,6 +2,9 @@ body{
 	background-color: rgb(246, 242, 242);
 	font-family: 'Lexend', sans-serif;
 }
+main{
+	margin: 0 10%;
+}
 
 a:link, a:visited {
 	color: #0082e0;
