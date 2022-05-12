@@ -1,7 +1,9 @@
 body{
-	background-color: rgb(246, 242, 242);
+	/*background-color: rgb(246, 242, 242);*/
 	font-family: 'Lexend', sans-serif;
+background-image: linear-gradient(to top, #3a043c, #54305d, #70587e, #8f819e, #b1abbd, #bfbccb, #ceced9, #dedfe6, #d7dbe7, #cfd7e7, #c6d3e8, #bcd0e8);
 }
+
 main{
 	margin: 0 10%;
 }
@@ -243,5 +245,6 @@ h2#Acth::after{
 footer{
 	text-align: center;
 }
+
 
 
