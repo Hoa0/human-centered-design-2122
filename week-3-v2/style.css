@@ -185,6 +185,10 @@ ol{
 	padding: 1em 2em 2em;
 }
 
+ol p{
+	margin-right: 2em;
+}
+
 ol section{
 	display: flex;
 }
