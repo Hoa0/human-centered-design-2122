@@ -1,653 +1,436 @@
-(function()
+/**
+ * source code: https://dev.opera.com/articles/accessible-drag-and-drop/ 
+ * @param {*} objElement 
+ * @param {*} strTagName 
+ * @param {*} strClassName 
+ * @returns Function to get elements by class name for DOM fragment and tag name
+ */
+function getElementsByClassName(objElement, strTagName, strClassName)
 {
+	let objCollection = objElement.getElementsByTagName(strTagName);
+	let arReturn = [];
+	let strClass, arClass, iClass, iCounter;
 
-    //exclude older browsers by the features we need them to support
-    //and legacy opera explicitly so we don't waste time on a dead browser
-    if
-    (
-        !document.querySelectorAll 
-        || 
-        !('draggable' in document.createElement('span')) 
-        || 
-        window.opera
-    ) 
-    { return; }
+	for(iCounter=0; iCounter<objCollection.length; iCounter++)
+	{
+		strClass = objCollection[iCounter].className;
+		if (strClass)
+		{
+			arClass = strClass.split(' ');
+			for (iClass=0; iClass<arClass.length; iClass++)
+			{
+				if (arClass[iClass] == strClassName)
+				{
+					arReturn.push(objCollection[iCounter]);
+					break;
+				}
+			}
+		}
+	}
 
-    //get the collection of draggable targets and add their draggable attribute
-    for(var 
-        targets = document.querySelectorAll('[data-draggable="target"]'), 
-        len = targets.length, 
-        i = 0; i < len; i ++)
-    {
-        targets[i].setAttribute('aria-dropeffect', 'none');
-    }
+	objCollection = null;
+	return (arReturn);
+}
 
-    //get the collection of draggable items and add their draggable attributes
-    for(var 
-        items = document.querySelectorAll('[data-draggable="item"]'), 
-        len = items.length, 
-        i = 0; i < len; i ++)
-    {
-        items[i].setAttribute('draggable', 'true');
-        items[i].setAttribute('aria-grabbed', 'false');
-        items[i].setAttribute('tabindex', '0');
-    }
+let drag = {
+	objCurrent : null,
 
+	arTargets : ['Tak', 'Maa', 'Din', 'Woe', 'Don', 'Vri', 'Zat', 'Zon'],
 
+	initialise : function(objNode)
+	{
+		// Add event handlers
+		objNode.onmousedown = drag.start;
+		objNode.onclick = function() {this.focus();};
+		objNode.onkeydown = drag.keyboardDragDrop;
+		document.body.onclick = drag.removePopup;
+	},
 
-    //dictionary for storing the selections data 
-    //comprising an array of the currently selected items 
-    //a reference to the selected items' owning container
-    //and a refernce to the current drop target container
-    var selections = 
-    {
-        items      : [],
-        owner      : null,
-        droptarget : null
-    };
+	keyboardDragDrop : function(objEvent)
+	{
+		objEvent = objEvent || window.event;
+		drag.objCurrent = this;
+		let arChoices = ['Takenlijst', 'Maandag', 'Dinsdag', 'Woensdag', 'Donderdag', 'Vrijdag', 'Zaterdag', 'Zondag'];
+		let iKey = objEvent.keyCode;
+		let objItem = drag.objCurrent;
+
+			let strExisting = objItem.parentNode.getAttribute('id');
+			let objMenu, objChoice, iCounter;
+
+			if (iKey == 32)
+			{// 72 H, 74 J - 75 K, 76 L
+				document.onkeydown = function(){return objEvent.keyCode==72 || objEvent.keyCode==74 || objEvent.keyCode==75 || objEvent.keyCode==76 ? false : true;};
+				// Set ARIA properties
+				drag.objCurrent.setAttribute('aria-grabbed', 'true');
+				drag.objCurrent.setAttribute('aria-owns', 'popup');
+				// Build context menu
+				objMenu = document.createElement('ul');
+				objMenu.setAttribute('id', 'popup');
+				objMenu.setAttribute('role', 'menu');
+				for (iCounter=0; iCounter<arChoices.length; iCounter++)
+				{
+					if (drag.arTargets[iCounter] != strExisting)
+					{
+						objChoice = document.createElement('li');
+						objChoice.appendChild(document.createTextNode(arChoices[iCounter]));
+						objChoice.tabIndex = -1;
+						objChoice.setAttribute('role', 'menuitem');
+						// name == first 3 letter
+						objChoice.onmousedown = function() {drag.dropObject(this.firstChild.data.substr(0, 3));};
+						objChoice.onkeydown = drag.handleContext;
+						objChoice.onmouseover = function() {if (this.className.indexOf('hover') < 0) {this.className += ' hover';} };
+						objChoice.onmouseout = function() {this.className = this.className.replace(/\s*hover/, ''); };
+						objMenu.appendChild(objChoice);
+					}
+				}
+				objItem.appendChild(objMenu);
+				objMenu.firstChild.focus();
+				objMenu.firstChild.className = 'focus';
+				drag.identifyTargets(true);
+			}
+	},
+
+	removePopup : function()
+	{
+		document.onkeydown = null;
+
+		let objContext = document.getElementById('popup');
+
+		if (objContext)
+		{
+			objContext.parentNode.removeChild(objContext);
+		}
+	},
+
+	handleContext : function(objEvent)
+	{
+		objEvent = objEvent || window.event;
+		let objItem = objEvent.target || objEvent.srcElement;
+		let iKey = objEvent.keyCode;
+		let objFocus, objList, strTarget, iCounter;
+
+		// Cancel default behaviour
+		if (objEvent.stopPropagation)
+		{
+			objEvent.stopPropagation();
+		}
+		else if (objEvent.cancelBubble)
+		{
+			objEvent.cancelBubble = true;
+		}
+		if (objEvent.preventDefault)
+		{
+			objEvent.preventDefault();
+		}
+		else if (objEvent.returnValue)
+		{
+			objEvent.returnValue = false;
+		}
+
+		switch (iKey)
+		{
+			case 72 : // Down arrow h
+				objFocus = objItem.nextSibling;
+				if (!objFocus)
+				{
+					objFocus = objItem.previousSibling;
+				}
+				objItem.className = '';
+				objFocus.focus();
+				objFocus.className = 'focus';
+				break;
+			case 74 : // Down arrow j
+				objFocus = objItem.nextSibling;
+				if (!objFocus)
+				{
+					objFocus = objItem.previousSibling;
+				}
+				objItem.className = '';
+				objFocus.focus();
+				objFocus.className = 'focus';
+				break;
+			case 75 : // Up arrow k
+				objFocus = objItem.previousSibling;
+				if (!objFocus)
+				{
+					objFocus = objItem.nextSibling;
+				}
+				objItem.className = '';
+				objFocus.focus();
+				objFocus.className = 'focus';
+				break;
+			case 76 : // Up arrow l
+				objFocus = objItem.previousSibling;
+				if (!objFocus)
+				{
+					objFocus = objItem.nextSibling;
+				}
+				objItem.className = '';
+				objFocus.focus();
+				objFocus.className = 'focus';
+				break;
+				// drop - n 78, m 77
+			case 78 : 
+				strTarget = objItem.firstChild.data.substr(0, 3);
+				drag.dropObject(strTarget);
+				break;
+			case 77 : 
+				strTarget = objItem.firstChild.data.substr(0, 3);
+				drag.dropObject(strTarget);
+				break;
+			case 27 : // Escape
+			case 9  : // 9 Tab, 67 c
+				drag.objCurrent.removeAttribute('aria-owns');
+				drag.objCurrent.removeChild(objItem.parentNode);
+				drag.objCurrent.focus();
+				for (iCounter=0; iCounter<drag.arTargets.length; iCounter++)
+				{
+					objList = document.getElementById(drag.arTargets[iCounter]);
+					drag.objCurrent.setAttribute('aria-grabbed', 'false');
+					objList.removeAttribute('aria-dropeffect');
+					objList.className = '';
+				}
+				break;
+		}
+	},
+
+	start : function(objEvent)
+	{
+		objEvent = objEvent || window.event;
+		drag.removePopup();
+		// Initialise properties
+		drag.objCurrent = this;
+
+		drag.objCurrent.lastX = objEvent.clientX;
+		drag.objCurrent.lastY = objEvent.clientY;
+		drag.objCurrent.style.zIndex = '2';
+		drag.objCurrent.setAttribute('aria-grabbed', 'true');
+
+		document.onmousemove = drag.drag;
+		document.onmouseup = drag.end;
+		drag.identifyTargets(true);
+
+		return false;
+	},
+
+	drag : function(objEvent)
+	{
+		objEvent = objEvent || window.event;
+
+		// Calculate new position
+		let iCurrentY = objEvent.clientY;
+		let iCurrentX = objEvent.clientX;
+		let iYPos = parseInt(drag.objCurrent.style.top, 10);
+		let iXPos = parseInt(drag.objCurrent.style.left, 10);
+		let iNewX, iNewY;
+
+		iNewX = iXPos + iCurrentX - drag.objCurrent.lastX;
+		iNewY = iYPos + iCurrentY - drag.objCurrent.lastY;
+
+		drag.objCurrent.style.left = iNewX + 'px';
+		drag.objCurrent.style.top = iNewY + 'px';
+		drag.objCurrent.lastX = iCurrentX;
+		drag.objCurrent.lastY = iCurrentY;
+
+		return false;
+	},
+
+	calculatePosition : function (objElement, strOffset)
+	{
+		let iOffset = 0;
+
+		// Get offset position in relation to parent nodes
+		if (objElement.offsetParent)
+		{
+			do 
+			{
+				iOffset += objElement[strOffset];
+				objElement = objElement.offsetParent;
+			} while (objElement);
+		}
+
+		return iOffset;
+	},
+
+	identifyTargets : function (bHighlight)
+	{
+		let strExisting = drag.objCurrent.parentNode.getAttribute('id');
+		let objList, iCounter;
+
+		// Highlight the targets for the current drag item
+		for (iCounter=0; iCounter<drag.arTargets.length; iCounter++)
+		{
+			objList = document.getElementById(drag.arTargets[iCounter]);
+			if (bHighlight && drag.arTargets[iCounter] != strExisting)
+			{
+				objList.className = 'highlight';
+				objList.setAttribute('aria-dropeffect', 'move');
+			}
+			else
+			{
+				objList.className = '';
+				objList.removeAttribute('aria-dropeffect');
+			}
+		}
+	},
+
+	getTarget : function()
+	{
+		let strExisting = drag.objCurrent.parentNode.getAttribute('id');
+		let iCurrentLeft = drag.calculatePosition(drag.objCurrent, 'offsetLeft');
+		let iCurrentTop = drag.calculatePosition(drag.objCurrent, 'offsetTop');
+		let iTolerance = 40;
+		let objList, iLeft, iRight, iTop, iBottom, iCounter;
+
+		for (iCounter=0; iCounter<drag.arTargets.length; iCounter++)
+		{
+			if (drag.arTargets[iCounter] != strExisting)
+			{
+				// Get position of the list
+				objList = document.getElementById(drag.arTargets[iCounter]);
+				iLeft = drag.calculatePosition(objList, 'offsetLeft') - iTolerance;
+				iRight = iLeft + objList.offsetWidth + iTolerance;
+				iTop = drag.calculatePosition(objList, 'offsetTop') - iTolerance;
+				iBottom = iTop + objList.offsetHeight + iTolerance;
+
+				// Determine if current object is over the target
+				if (iCurrentLeft > iLeft && iCurrentLeft < iRight && iCurrentTop > iTop && iCurrentTop < iBottom)
+				{
+					return drag.arTargets[iCounter];
+				}
+			}
+		}
+
+		// Current object is not over a target
+		return '';
+	},
+
+	dropObject : function(strTarget)
+	{
+		let objClone, objOriginal, objTarget, objEmpty, objBands, objItem;
+
+		drag.removePopup();
+
+		if (strTarget.length > 0)
+		{
+			// Copy node to new target
+			objOriginal = drag.objCurrent.parentNode;
+			objClone = drag.objCurrent.cloneNode(true);
+
+			// Remove previous attributes
+			objClone.removeAttribute('style');
+			objClone.className = objClone.className.replace(/\s*focused/, '');
+			objClone.className = objClone.className.replace(/\s*hover/, '');
+
+			// Add focus indicators
+			objClone.onfocus = function() {this.className += ' focused'; };
+			objClone.onblur = function() {this.className = this.className.replace(/\s*focused/, '');};
+			objClone.onmouseover = function() {if (this.className.indexOf('hover') < 0) {this.className += ' hover';} };
+			objClone.onmouseout = function() {this.className = this.className.replace(/\s*hover/, ''); };
+
+			objTarget = document.getElementById(strTarget);
+			objOriginal.removeChild(drag.objCurrent);
+			objTarget.appendChild(objClone);
+			drag.objCurrent = objClone;
+			drag.initialise(objClone);
+
+			// Remove empty node if there are activities in list
+			objEmpty = getElementsByClassName(objTarget, 'li', 'empty');
+			if (objEmpty[0])
+			{
+				objTarget.removeChild(objEmpty[0]);
+			}
+
+			// Add an empty node if there are no activities in list
+			objBands = objOriginal.getElementsByTagName('li');
+			if (objBands.length === 0)
+			{
+				objItem = document.createElement('li');
+				objItem.appendChild(document.createTextNode('None'));
+				objItem.className = 'empty';
+				objOriginal.appendChild(objItem);
+			}
+		}
+				// Reset properties
+		drag.objCurrent.style.left = '0px';
+		drag.objCurrent.style.top = '0px';
+
+		drag.objCurrent.style.zIndex = 'auto';
+		drag.objCurrent.setAttribute('aria-grabbed', 'false');
+		drag.objCurrent.removeAttribute('aria-owns');
+
+		drag.identifyTargets(false);
+	},
+
+	end : function()
+	{
+		let strTarget = drag.getTarget();
+
+		drag.dropObject(strTarget);
+
+		document.onmousemove = null;
+		document.onmouseup   = null;
+		drag.objCurrent = null;
+	}
+};
+// add activities to list
+(function () {
+	let addList = getElementsByClassName(document, 'li', 'draggable');
+  document.querySelector('#add').addEventListener('click', function () {
+    let input = document.querySelector('#text');
+    let list = document.querySelector('#Tak'); 
     
-    //function for selecting an item
-    function addSelection(item)
-    {
-        //if the owner reference is still null, set it to this item's parent
-        //so that further selection is only allowed within the same container
-        if(!selections.owner)
-        {
-            selections.owner = item.parentNode;
-        }
-        
-        //or if that's already happened then compare it with this item's parent
-        //and if they're not the same container, return to prevent selection
-        else if(selections.owner != item.parentNode)
-        {
-            return;
-        }
-                
-        //set this item's grabbed state
-        item.setAttribute('aria-grabbed', 'true');
-        
-        //add it to the items array
-        selections.items.push(item);
-    }
-    
-    //function for unselecting an item
-    function removeSelection(item)
-    {
-        //reset this item's grabbed state
-        item.setAttribute('aria-grabbed', 'false');
-        
-        //then find and remove this item from the existing items array
-        for(var len = selections.items.length, i = 0; i < len; i ++)
-        {
-            if(selections.items[i] == item)
-            {
-                selections.items.splice(i, 1);
-                break;
-            }
-        }
-    }
-    
-    //function for resetting all selections
-    function clearSelections()
-    {
-        //if we have any selected items
-        if(selections.items.length)
-        {
-            //reset the owner reference
-            selections.owner = null;
-
-            //reset the grabbed state on every selected item
-            for(var len = selections.items.length, i = 0; i < len; i ++)
-            {
-                selections.items[i].setAttribute('aria-grabbed', 'false');
-            }
-
-            //then reset the items array        
-            selections.items = [];
-        }
-    }
-
-    //shorctut function for testing whether a selection modifier is pressed
-    function hasModifier(e)
-    {
-        return (e.ctrlKey || e.metaKey || e.shiftKey);
-    }
-    
-     
-    //function for applying dropeffect to the target containers
-    function addDropeffects()
-    {
-        //apply aria-dropeffect and tabindex to all targets apart from the owner
-        for(var len = targets.length, i = 0; i < len; i ++)
-        {
-            if
-            (
-                targets[i] != selections.owner 
-                && 
-                targets[i].getAttribute('aria-dropeffect') == 'none'
-            )
-            {
-                targets[i].setAttribute('aria-dropeffect', 'move');
-                targets[i].setAttribute('tabindex', '0');
-            }
-        }
-
-        //remove aria-grabbed and tabindex from all items inside those containers
-        for(var len = items.length, i = 0; i < len; i ++)
-        {
-            if
-            (
-                items[i].parentNode != selections.owner 
-                && 
-                items[i].getAttribute('aria-grabbed')
-            )
-            {
-                items[i].removeAttribute('aria-grabbed');
-                items[i].removeAttribute('tabindex');
-            }
-        }        
-    }
-    
-    //function for removing dropeffect from the target containers
-    function clearDropeffects()
-    {
-        //if we have any selected items
-        if(selections.items.length)
-        {
-            //reset aria-dropeffect and remove tabindex from all targets
-            for(var len = targets.length, i = 0; i < len; i ++)
-            {
-                if(targets[i].getAttribute('aria-dropeffect') != 'none')
-                {
-                    targets[i].setAttribute('aria-dropeffect', 'none');
-                    targets[i].removeAttribute('tabindex');
-                }
-            }
-
-            //restore aria-grabbed and tabindex to all selectable items 
-            //without changing the grabbed value of any existing selected items
-            for(var len = items.length, i = 0; i < len; i ++)
-            {
-                if(!items[i].getAttribute('aria-grabbed'))
-                {
-                    items[i].setAttribute('aria-grabbed', 'false');
-                    items[i].setAttribute('tabindex', '0');
-                }
-                else if(items[i].getAttribute('aria-grabbed') == 'true')
-                {
-                    items[i].setAttribute('tabindex', '0');
-                }
-            }        
-        }
-    }
-
-    //shortcut function for identifying an event element's target container
-    function getContainer(element)
-    {
-        do
-        {
-            if(element.nodeType == 1 && element.getAttribute('aria-dropeffect'))
-            {
-                return element;
-            }
-        }
-        while(element = element.parentNode);
-        
-        return null;
-    }
-
-
-
-    //mousedown event to implement single selection
-    document.addEventListener('mousedown', function(e)
-    {
-        //if the element is a draggable item
-        if(e.target.getAttribute('draggable'))
-        {
-            //clear dropeffect from the target containers
-            clearDropeffects();
-
-            //if the multiple selection modifier is not pressed 
-            //and the item's grabbed state is currently false
-            if
-            (
-                !hasModifier(e) 
-                && 
-                e.target.getAttribute('aria-grabbed') == 'false'
-            )
-            {
-                //clear all existing selections
-                clearSelections();
-            
-                //then add this new selection
-                addSelection(e.target);
-            }
-        }
-        
-        //else [if the element is anything else]
-        //and the selection modifier is not pressed 
-        else if(!hasModifier(e))
-        {
-            //clear dropeffect from the target containers
-            clearDropeffects();
-
-            //clear all existing selections
-            clearSelections();
-        }
-        
-        //else [if the element is anything else and the modifier is pressed]
-        else
-        {
-            //clear dropeffect from the target containers
-            clearDropeffects();
-        }
-
-    }, false);
-    
-    //mouseup event to implement multiple selection
-    document.addEventListener('mouseup', function(e)
-    {
-        //if the element is a draggable item 
-        //and the multipler selection modifier is pressed
-        if(e.target.getAttribute('draggable') && hasModifier(e))
-        {
-            //if the item's grabbed state is currently true
-            if(e.target.getAttribute('aria-grabbed') == 'true')
-            {
-                //unselect this item
-                removeSelection(e.target);
-                
-                //if that was the only selected item
-                //then reset the owner container reference
-                if(!selections.items.length)
-                {
-                    selections.owner = null;
-                }
-            }
-            
-            //else [if the item's grabbed state is false]
-            else
-            {
-                //add this additional selection
-                addSelection(e.target);
-            }
-        }
-        
-    }, false);
-
-    //dragstart event to initiate mouse dragging
-    document.addEventListener('dragstart', function(e)
-    {
-        //if the element's parent is not the owner, then block this event
-        if(selections.owner != e.target.parentNode)
-        {
-            e.preventDefault();
-            return;
-        }
-                
-        //[else] if the multiple selection modifier is pressed 
-        //and the item's grabbed state is currently false
-        if
-        (
-            hasModifier(e) 
-            && 
-            e.target.getAttribute('aria-grabbed') == 'false'
-        )
-        {
-            //add this additional selection
-            addSelection(e.target);
-        }
-        
-        //we don't need the transfer data, but we have to define something
-        //otherwise the drop action won't work at all in firefox
-        //most browsers support the proper mime-type syntax, eg. "text/plain"
-        //but we have to use this incorrect syntax for the benefit of IE10+
-        e.dataTransfer.setData('text', '');
-        
-        //apply dropeffect to the target containers
-        addDropeffects();
-    
-    }, false);
-    
-    
-
-    //keydown event to implement selection and abort
-    document.addEventListener('keydown', function(e)
-    {
-        //if the element is a grabbable item 
-        if(e.target.getAttribute('aria-grabbed'))
-        {
-            //Space is the selection or unselection keystroke
-            if(e.keyCode == 32)
-            {
-                //if the multiple selection modifier is pressed 
-                if(hasModifier(e))
-                {
-                    //if the item's grabbed state is currently true
-                    if(e.target.getAttribute('aria-grabbed') == 'true')
-                    {
-                        //if this is the only selected item, clear dropeffect 
-                        //from the target containers, which we must do first
-                        //in case subsequent unselection sets owner to null
-                        if(selections.items.length == 1)
-                        {
-                            clearDropeffects();
-                        }
-
-                        //unselect this item
-                        removeSelection(e.target);
-
-                        //if we have any selections
-                        //apply dropeffect to the target containers, 
-                        //in case earlier selections were made by mouse
-                        if(selections.items.length)
-                        {
-                            addDropeffects();
-                        }
-                
-                        //if that was the only selected item
-                        //then reset the owner container reference
-                        if(!selections.items.length)
-                        {
-                            selections.owner = null;
-                        }
-                    }
-                    
-                    //else [if its grabbed state is currently false]
-                    else
-                    {
-                        //add this additional selection
-                        addSelection(e.target);
-
-                        //apply dropeffect to the target containers    
-                        addDropeffects();
-                    }
-                }
-
-                //else [if the multiple selection modifier is not pressed]
-                //and the item's grabbed state is currently false
-                else if(e.target.getAttribute('aria-grabbed') == 'false')
-                {
-                    //clear dropeffect from the target containers
-                    clearDropeffects();
-
-                    //clear all existing selections
-                    clearSelections();
-            
-                    //add this new selection
-                    addSelection(e.target);
-
-                    //apply dropeffect to the target containers
-                    addDropeffects();
-                }
-                
-                //else [if modifier is not pressed and grabbed is already true]
-                else
-                {
-                    //apply dropeffect to the target containers    
-                    addDropeffects();
-                }
-            
-                //then prevent default to avoid any conflict with native actions
-                e.preventDefault();
-            }
-
-            //Modifier + M is the end-of-selection keystroke
-            if(e.keyCode == 77 && hasModifier(e))
-            {
-                //if we have any selected items
-                if(selections.items.length)
-                {
-                    //apply dropeffect to the target containers    
-                    //in case earlier selections were made by mouse
-                    addDropeffects();
-
-                    //if the owner container is the last one, focus the first one
-                    if(selections.owner == targets[targets.length - 1])
-                    {
-                        targets[0].focus();
-                    }
-                    
-                    //else [if it's not the last one], find and focus the next one
-                    else
-                    {
-                        for(var len = targets.length, i = 0; i < len; i ++)
-                        {
-                            if(selections.owner == targets[i])
-                            {
-                                targets[i + 1].focus();
-                                break;
-                            }
-                        }
-                    }
-                }                
-        
-                //then prevent default to avoid any conflict with native actions
-                e.preventDefault();
-            }
-        }
-        
-        //Escape is the abort keystroke (for any target element)
-        if(e.keyCode == 27)
-        {
-            //if we have any selected items
-            if(selections.items.length)
-            {
-                //clear dropeffect from the target containers
-                clearDropeffects();
-                
-                //then set focus back on the last item that was selected, which is 
-                //necessary because we've removed tabindex from the current focus
-                selections.items[selections.items.length - 1].focus();
-
-                //clear all existing selections
-                clearSelections();
-                
-                //but don't prevent default so that native actions can still occur
-            }
-        }
-            
-    }, false);
-
-
-   
-    //related variable is needed to maintain a reference to the 
-    //dragleave's relatedTarget, since it doesn't have e.relatedTarget
-    var related = null;
-
-    //dragenter event to set that variable
-    document.addEventListener('dragenter', function(e)
-    {
-        related = e.target;
-
-    }, false);
-    
-    //dragleave event to maintain target highlighting using that variable
-    document.addEventListener('dragleave', function(e)
-    {
-        //get a drop target reference from the relatedTarget
-        var droptarget = getContainer(related);
-        
-        //if the target is the owner then it's not a valid drop target
-        if(droptarget == selections.owner)
-        {
-            droptarget = null;
-        }
-
-        //if the drop target is different from the last stored reference
-        //(or we have one of those references but not the other one)
-        if(droptarget != selections.droptarget)
-        {
-            //if we have a saved reference, clear its existing dragover class
-            if(selections.droptarget)
-            {
-                selections.droptarget.className = 
-                    selections.droptarget.className.replace(/ dragover/g, '');
-            }
-            
-            //apply the dragover class to the new drop target reference
-            if(droptarget)
-            {
-                droptarget.className += ' dragover';
-            }
-                    
-            //then save that reference for next time
-            selections.droptarget = droptarget;
-        }
-
-    }, false);    
-
-    //dragover event to allow the drag by preventing its default
-    document.addEventListener('dragover', function(e)
-    {
-        //if we have any selected items, allow them to be dragged
-        if(selections.items.length)
-        {
-            e.preventDefault();
-        }
-    
-    }, false);    
-
-
-
-    //dragend event to implement items being validly dropped into targets,
-    //or invalidly dropped elsewhere, and to clean-up the interface either way
-    document.addEventListener('dragend', function(e)
-    {
-        //if we have a valid drop target reference
-        //(which implies that we have some selected items)
-        if(selections.droptarget)
-        {
-            //append the selected items to the end of the target container
-            for(var len = selections.items.length, i = 0; i < len; i ++)
-            {
-                selections.droptarget.appendChild(selections.items[i]);
-            }
-
-            //prevent default to allow the action            
-            e.preventDefault();
-        }
-
-        //if we have any selected items
-        if(selections.items.length)
-        {
-            //clear dropeffect from the target containers
-            clearDropeffects();
-        
-            //if we have a valid drop target reference
-            if(selections.droptarget)
-            {
-                //reset the selections array
-                clearSelections();
-
-                //reset the target's dragover class
-                selections.droptarget.className = 
-                    selections.droptarget.className.replace(/ dragover/g, '');
-
-                //reset the target reference
-                selections.droptarget = null;
-            }
-        }
-        
-    }, false);
-
-
-
-    //keydown event to implement items being dropped into targets
-    document.addEventListener('keydown', function(e)
-    {
-        //if the element is a drop target container
-        if(e.target.getAttribute('aria-dropeffect'))
-        {
-            //Enter or control(Modifier) + M is the drop keystroke
-            //if(e.keyCode == 13 || (e.keyCode == 77 && hasModifier(e)))
-            if(e.keyCode == 65 || e.keyCode == 68 || e.keyCode == 83 ) // asd drop
-            {
-                //append the selected items to the end of the target container
-                for(var len = selections.items.length, i = 0; i < len; i ++)
-                {
-                    e.target.appendChild(selections.items[i]);
-                }
-
-                //clear dropeffect from the target containers
-                clearDropeffects();
-    
-                //then set focus back on the last item that was selected, which is 
-                //necessary because we've removed tabindex from the current focus
-                selections.items[selections.items.length - 1].focus();
-
-                //reset the selections array
-                clearSelections();
-
-                //prevent default to to avoid any conflict with native actions
-                e.preventDefault();
-            }
-        }
-
-    }, false);
-
+     addList = document.createElement('li'); // create li node
+    let itemText = document.createTextNode(input.value); // create text node
+    addList.setAttribute('aria-draggable', true)
+    addList.setAttribute('tabindex', '0')
+    addList.appendChild(itemText); // append text node to li node
+    list.appendChild(addList); // append li node to list
+    input.value = ""; // clear input
+	 addList.classList.add('draggable');
+  });
 })();
+function init ()
+{
+	let objItems = getElementsByClassName(document, 'li', 'draggable');
+	let objItem, iCounter;
 
-// left -> right
-(function(){
-  var list = document.querySelector('section');
-  var items = list.querySelectorAll('article');
-  var amount = Math.floor(
-        list.offsetWidth / 
-        list.firstElementChild.offsetWidth
-      );
-  var codes = {
-   /* 
-    72 = h - links
-    76 = l - rechts
-    */
-     72:-1, 
-    76: 1
-  };
-  for (var i = 0; i < items.length; i++) {
-    items[i].index = i;
-  }
-  function handlekeysss(ev) {
-    var keycode = ev.keyCode;
-    if (codes[keycode]) {
-      var t = ev.target;
-      if (t.index !== undefined) {
-        if (items[t.index + codes[keycode]]) {
-          items[t.index + codes[keycode]].focus();
-        }
-      }
-    }
-  }
-  list.addEventListener('keyup', handlekeysss);
-})();
+	for (iCounter=0; iCounter<objItems.length; iCounter++)
+	{
+		// Set initial values so can be moved
+		objItems[iCounter].style.top = '0px';
+		objItems[iCounter].style.left = '0px';
 
-// up -> down
-(function(){
-  var list = document.querySelector('section');
-  var items = list.querySelectorAll('span');
-  var amount = Math.floor(
-        list.offsetWidth / 
-        list.firstElementChild.offsetWidth
-      );
-  var codes = {
-    // w 87, e 69, r 82 - up
-    // a 65, s 83, d 68 - down
-     74: -1,
-    75: 1
-  };
-  for (var i = 0; i < items.length; i++) {
-    items[i].index = i;
-  }
-  function handlekeys(ev) {
-    var keycode = ev.keyCode;
-    if (codes[keycode]) {
-      var t = ev.target;
-      if (t.index !== undefined) {
-        if (items[t.index + codes[keycode]]) {
-          items[t.index + codes[keycode]].focus();
-        }
-      }
-    }
-  }
-  list.addEventListener('keyup', handlekeys);
-})();
+		// Put the list items into the keyboard tab order
+		objItems[iCounter].tabIndex = 0;
+
+		// Set ARIA attributes for artists
+		objItems[iCounter].setAttribute('aria-grabbed', 'false');
+		objItems[iCounter].setAttribute('aria-haspopup', 'true');
+		objItems[iCounter].setAttribute('role', 'listitem');
+
+		// Provide a focus indicator
+		objItems[iCounter].onfocus = function() {this.className += ' focused'; };
+		objItems[iCounter].onblur = function() {this.className = this.className.replace(/\s*focused/, '');};
+		objItems[iCounter].onmouseover = function() {if (this.className.indexOf('hover') < 0) {this.className += ' hover';} };
+		objItems[iCounter].onmouseout = function() {this.className = this.className.replace(/\s*hover/, ''); };
+
+		drag.initialise(objItems[iCounter]);
+	}
+
+	// Set ARIA properties on the drag and drop list, and set role of this region to application
+	for (iCounter=0; iCounter<drag.arTargets.length; iCounter++)
+	{
+		objItem = document.getElementById(drag.arTargets[iCounter]);
+		objItem.setAttribute('aria-labelledby', drag.arTargets[iCounter] + 'h');
+		objItem.setAttribute('role', 'list');
+	}
+
+	objItem = document.getElementById('container');
+	objItem.setAttribute('role', 'application');
+	
+
+	objItems = null;
+}
+
+window.onload = init;
