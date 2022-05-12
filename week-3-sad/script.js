@@ -35,7 +35,7 @@ function getElementsByClassName(objElement, strTagName, strClassName)
 let drag = {
 	objCurrent : null,
 
-	arTargets : ['Tak', 'Maa', 'Din'],
+	arTargets : ['Tak', 'Maa', 'Din', 'Woe', 'Don', 'Vri', 'Zat', 'Zon'],
 
 	initialise : function(objNode)
 	{
@@ -50,8 +50,7 @@ let drag = {
 	{
 		objEvent = objEvent || window.event;
 		drag.objCurrent = this;
-		let arChoices = ['Takenlijst', 'Maandag', 'Dinsdag'];
-		// var arChoices = ['Favourite artists', 'Tolerable artists', 'Rejected artists'];
+		let arChoices = ['Takenlijst', 'Maandag', 'Dinsdag', 'Woensdag', 'Donderdag', 'Vrijdag', 'Zaterdag', 'Zondag'];
 		let iKey = objEvent.keyCode;
 		let objItem = drag.objCurrent;
 
@@ -76,6 +75,7 @@ let drag = {
 						objChoice.appendChild(document.createTextNode(arChoices[iCounter]));
 						objChoice.tabIndex = -1;
 						objChoice.setAttribute('role', 'menuitem');
+						// name == first 3 letter
 						objChoice.onmousedown = function() {drag.dropObject(this.firstChild.data.substr(0, 3));};
 						objChoice.onkeydown = drag.handleContext;
 						objChoice.onmouseover = function() {if (this.className.indexOf('hover') < 0) {this.className += ' hover';} };
