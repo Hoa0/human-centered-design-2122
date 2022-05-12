@@ -7,9 +7,9 @@
  */
 function getElementsByClassName(objElement, strTagName, strClassName)
 {
-	var objCollection = objElement.getElementsByTagName(strTagName);
-	var arReturn = [];
-	var strClass, arClass, iClass, iCounter;
+	let objCollection = objElement.getElementsByTagName(strTagName);
+	let arReturn = [];
+	let strClass, arClass, iClass, iCounter;
 
 	for(iCounter=0; iCounter<objCollection.length; iCounter++)
 	{
@@ -32,7 +32,7 @@ function getElementsByClassName(objElement, strTagName, strClassName)
 	return (arReturn);
 }
 
-var drag = {
+let drag = {
 	objCurrent : null,
 
 	arTargets : ['Tak', 'Maa', 'Din'],
@@ -50,13 +50,13 @@ var drag = {
 	{
 		objEvent = objEvent || window.event;
 		drag.objCurrent = this;
-		var arChoices = ['Takenlijst', 'Maandag', 'Dinsdag'];
+		let arChoices = ['Takenlijst', 'Maandag', 'Dinsdag'];
 		// var arChoices = ['Favourite artists', 'Tolerable artists', 'Rejected artists'];
-		var iKey = objEvent.keyCode;
-		var objItem = drag.objCurrent;
+		let iKey = objEvent.keyCode;
+		let objItem = drag.objCurrent;
 
-			var strExisting = objItem.parentNode.getAttribute('id');
-			var objMenu, objChoice, iCounter;
+			let strExisting = objItem.parentNode.getAttribute('id');
+			let objMenu, objChoice, iCounter;
 
 			if (iKey == 32)
 			{// 74 J - 75 K
@@ -94,7 +94,7 @@ var drag = {
 	{
 		document.onkeydown = null;
 
-		var objContext = document.getElementById('popup');
+		let objContext = document.getElementById('popup');
 
 		if (objContext)
 		{
@@ -105,9 +105,9 @@ var drag = {
 	handleContext : function(objEvent)
 	{
 		objEvent = objEvent || window.event;
-		var objItem = objEvent.target || objEvent.srcElement;
-		var iKey = objEvent.keyCode;
-		var objFocus, objList, strTarget, iCounter;
+		let objItem = objEvent.target || objEvent.srcElement;
+		let iKey = objEvent.keyCode;
+		let objFocus, objList, strTarget, iCounter;
 
 		// Cancel default behaviour
 		if (objEvent.stopPropagation)
@@ -149,12 +149,17 @@ var drag = {
 				objFocus.focus();
 				objFocus.className = 'focus';
 				break;
-			case 13 : // Enter
+				// drop - n 78, m 77
+			case 78 : 
+				strTarget = objItem.firstChild.data.substr(0, 3);
+				drag.dropObject(strTarget);
+				break;
+			case 77 : 
 				strTarget = objItem.firstChild.data.substr(0, 3);
 				drag.dropObject(strTarget);
 				break;
 			case 27 : // Escape
-			case 9  : // Tab
+			case 9  : // 9 Tab, 67 c
 				drag.objCurrent.removeAttribute('aria-owns');
 				drag.objCurrent.removeChild(objItem.parentNode);
 				drag.objCurrent.focus();
@@ -193,11 +198,11 @@ var drag = {
 		objEvent = objEvent || window.event;
 
 		// Calculate new position
-		var iCurrentY = objEvent.clientY;
-		var iCurrentX = objEvent.clientX;
-		var iYPos = parseInt(drag.objCurrent.style.top, 10);
-		var iXPos = parseInt(drag.objCurrent.style.left, 10);
-		var iNewX, iNewY;
+		let iCurrentY = objEvent.clientY;
+		let iCurrentX = objEvent.clientX;
+		let iYPos = parseInt(drag.objCurrent.style.top, 10);
+		let iXPos = parseInt(drag.objCurrent.style.left, 10);
+		let iNewX, iNewY;
 
 		iNewX = iXPos + iCurrentX - drag.objCurrent.lastX;
 		iNewY = iYPos + iCurrentY - drag.objCurrent.lastY;
@@ -212,7 +217,7 @@ var drag = {
 
 	calculatePosition : function (objElement, strOffset)
 	{
-		var iOffset = 0;
+		let iOffset = 0;
 
 		// Get offset position in relation to parent nodes
 		if (objElement.offsetParent)
@@ -229,8 +234,8 @@ var drag = {
 
 	identifyTargets : function (bHighlight)
 	{
-		var strExisting = drag.objCurrent.parentNode.getAttribute('id');
-		var objList, iCounter;
+		let strExisting = drag.objCurrent.parentNode.getAttribute('id');
+		let objList, iCounter;
 
 		// Highlight the targets for the current drag item
 		for (iCounter=0; iCounter<drag.arTargets.length; iCounter++)
@@ -251,11 +256,11 @@ var drag = {
 
 	getTarget : function()
 	{
-		var strExisting = drag.objCurrent.parentNode.getAttribute('id');
-		var iCurrentLeft = drag.calculatePosition(drag.objCurrent, 'offsetLeft');
-		var iCurrentTop = drag.calculatePosition(drag.objCurrent, 'offsetTop');
-		var iTolerance = 40;
-		var objList, iLeft, iRight, iTop, iBottom, iCounter;
+		let strExisting = drag.objCurrent.parentNode.getAttribute('id');
+		let iCurrentLeft = drag.calculatePosition(drag.objCurrent, 'offsetLeft');
+		let iCurrentTop = drag.calculatePosition(drag.objCurrent, 'offsetTop');
+		let iTolerance = 40;
+		let objList, iLeft, iRight, iTop, iBottom, iCounter;
 
 		for (iCounter=0; iCounter<drag.arTargets.length; iCounter++)
 		{
@@ -282,7 +287,7 @@ var drag = {
 
 	dropObject : function(strTarget)
 	{
-		var objClone, objOriginal, objTarget, objEmpty, objBands, objItem;
+		let objClone, objOriginal, objTarget, objEmpty, objBands, objItem;
 
 		drag.removePopup();
 
@@ -339,7 +344,7 @@ var drag = {
 
 	end : function()
 	{
-		var strTarget = drag.getTarget();
+		let strTarget = drag.getTarget();
 
 		drag.dropObject(strTarget);
 
@@ -351,8 +356,8 @@ var drag = {
 
 function init ()
 {
-	var objItems = getElementsByClassName(document, 'li', 'draggable');
-	var objItem, iCounter;
+	let objItems = getElementsByClassName(document, 'li', 'draggable');
+	let objItem, iCounter;
 
 	for (iCounter=0; iCounter<objItems.length; iCounter++)
 	{
@@ -385,7 +390,7 @@ function init ()
 		objItem.setAttribute('role', 'list');
 	}
 
-	objItem = document.getElementById('dragdrop');
+	objItem = document.getElementById('container');
 	objItem.setAttribute('role', 'application');
 	
 
@@ -393,4 +398,54 @@ function init ()
 }
 
 window.onload = init;
+
+
+let btns = document.querySelectorAll(".tab");
+btns.forEach((btn, index) => {
+  // set first button tabindex to 0
+  // and set every other button tabindex to -1
+  if (index == btns.length - 1) {
+    btn.setAttribute("tabindex", 0);
+  } else {
+    btn.setAttribute("tabindex", -1);
+  }
+
+  // add an event listener when C key is pressed
+  btn.addEventListener("keydown", (e) => {
+    if (e.keyCode == 67) { //67 c
+      // prevent the default behaviour
+      e.preventDefault();
+      // set current button tabindex to 0
+      btn.setAttribute("tabindex", -1);
+      // if not last button keep setting tabindex to 0
+      if (btn.previousElementSibling != null) {
+        let nextEl = btn.previousElementSibling;
+        nextEl.setAttribute("tabindex", 0);
+        nextEl.focus();
+      } else {
+        // when we get to last element set first element to tabindex 0
+        // and call focus method on it.
+        // note the .lastElementChild the last element becomes our first 
+        // that's because of the direction we changed
+        
+        let firstEl = document.querySelector("#container")
+          .lastElementChild;
+        firstEl.setAttribute("tabindex", 0);
+        firstEl.focus();
+      }
+    }
+  });
+
+  btn.addEventListener("click", () => {
+    removeActive();
+    btn.classList.add("active");
+  });
+});
+removeActive = (btn) => {
+  btns.forEach((btn) => {
+    btn.classList.remove("active");
+  });
+};
+
+
 
