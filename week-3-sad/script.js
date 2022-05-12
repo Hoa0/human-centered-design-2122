@@ -314,14 +314,14 @@ let drag = {
 			drag.objCurrent = objClone;
 			drag.initialise(objClone);
 
-			// Remove empty node if there are artists in list
+			// Remove empty node if there are activities in list
 			objEmpty = getElementsByClassName(objTarget, 'li', 'empty');
 			if (objEmpty[0])
 			{
 				objTarget.removeChild(objEmpty[0]);
 			}
 
-			// Add an empty node if there are no artists in list
+			// Add an empty node if there are no activities in list
 			objBands = objOriginal.getElementsByTagName('li');
 			if (objBands.length === 0)
 			{
@@ -353,7 +353,22 @@ let drag = {
 		drag.objCurrent = null;
 	}
 };
-
+// add activities to list
+(function () {
+	let addList = getElementsByClassName(document, 'li', 'draggable');
+  document.querySelector('#add').addEventListener('click', function () {
+    let input = document.querySelector('#text');
+    let list = document.querySelector('#Tak'); 
+    
+     addList = document.createElement('li'); // create li node
+    let itemText = document.createTextNode(input.value); // create text node
+    
+    addList.appendChild(itemText); // append text node to li node
+    list.appendChild(addList); // append li node to list
+    input.value = ""; // clear input
+	 addList.classList.add('draggable');
+  });
+})();
 function init ()
 {
 	let objItems = getElementsByClassName(document, 'li', 'draggable');
@@ -398,9 +413,3 @@ function init ()
 }
 
 window.onload = init;
-
-
-
-
-
-
