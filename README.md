@@ -14,10 +14,6 @@ Wat voor principes heb je gebruikt en getest? En is het leuk?
 
 ## Opdracht
 
-[demo 1](https://hoa0.github.io/human-centered-design-2122/week-1/)
-[demo 2](https://hoa0.github.io/human-centered-design-2122/week-2/)
-[demo 3](https://hoa0.github.io/human-centered-design-2122/week-3-v2/)
-
 ### Ontwerpen met en voor echte mensen
 
 Voor dit vak krijg je een ontwerp-opdracht die je gaat maken voor 1 mens.
@@ -38,97 +34,19 @@ En hoe bedient deze persoon een computer?
 - _User needs begrijpen en gebruiken in je ontwerp._
 - _Leren hoe je moet testen en de resultaten gebruiken voor het verbeteren van je ontwerp._
 
-[Rubric](#rubric)
+## Demo & proces
 
-## Planning & programma
+### week 1
 
-| Planning                                             | Woensdag                                 | Donderdag        | Vrijdag                |
-| ---------------------------------------------------- | ---------------------------------------- | ---------------- | ---------------------- |
-| [Week 1](#week-1---kickoff-en-aannames-testen)       | Intro, College exclusive design + Testen | College + Testen | Feedbackgesprekken     |
-| [Week 2](#week-2---prototypen-en-testen)             | ~~Koningsdag~~                           | College + Testen | Feedbackgesprekken     |
-| ~~Meivakantie~~                                      |                                          |                  |                        |
-| [Week 3](#week-3---prototypen-testen-en-reflecteren) | College + Testen                         | College + Testen | Beoordelingsgesprekken |
+[demo 1](https://hoa0.github.io/human-centered-design-2122/week-1/)
+[Proces week 1](https://github.com/Hoa0/human-centered-design-2122/wiki/Week-1---prototypen-&-testen)
 
-## Week 1 - Kickoff en aannames testen
+### week 2
 
-Deze week krijg je een college over _Exclusive Design Principles_. Deze Principles ga je toepassen in de opdracht. Op woensdag en donderdag gaan we kennis maken met de echte mensen voor wie we gaan ontwerpen. Je kan dan al een kleine interactieve demo maken om te testen.
+[demo 2](https://hoa0.github.io/human-centered-design-2122/week-2/)
+[Proces week 2](https://github.com/Hoa0/human-centered-design-2122/wiki/Week-2---prototypen-&-testen)
 
-### Woensdag 20 april
+### week 3
 
-Woensdag is de eerste les van het vak Human Centered Design. Je krijgt een intro college over het vak en Vasilis gaat vertellen over _Exclusive Design_.
-
-Daarna prototypen en testen.
-
-### Donderdag 21 april
-
-Donderdag begint de les met het delen van bevindingen van de test van woensdag. Ook gaan we deze les het artikel [Exclusive Design van Vasilis van Gemert](https://exclusive-design.vasilis.nl/) bespreken.
-
-Daarna prototypen en testen.
-
-### Vrijdag 22 april
-
-Feedbackgesprekken in groepen.
-
-## Week 2 - Prototypen en testen
-
-Deze week heb je het tweede gesprek met je mens. Wat ga je testen? Wat wil je weten? Woensdag is het koningsdag, dan is er geen les.
-
-### Donderdag 28 april
-
-Donderdag krijg je een college over testen. Voor deze les moet je het artikel [10 Usability Lessons van Steve Krug](https://www.uxbooth.com/articles/10-usability-lessons-from-steve-krugs-dont-make-me-think/) en [How User Scenarios Help To Improve Your UX van Sabina Idler](https://usabilla.com/blog/how-user-scenarios-help-to-improve-your-ux/) lezen.
-
-'s Middags ga je voor de tweede keer prototypen en testen.
-
-### Vrijdag 29 april
-
-Feedbackgesprekken in groepen.
-
-## Week 3 - Prototypen, testen en reflecteren
-
-In week 3 gaan we verder met testen, itereren en reflecteren. Deze week is de laatste sessie met je mens.
-
-### Woensdag 11 mei
-
-Woensdag beginnen we met een college. Voor deze les moet je dit artikel lezen: [Design for Both Needs and Wants: Applying Anderson’s User Experience Hierarchy of Needs](https://thevisualcommunicationguy.com/2018/11/08/design-for-both-needs-and-wants-applying-andersons-user-experience-hierarchy-of-needs/)
-
-Daarna prototypen en testen.
-
-### Donderdag 12 mei
-
-Donderdag gaan we bevindingen van de tests bespreken.
-
-Daarna prototypen en testen.
-
-### Vrijdag 13 mei
-
-Op vrijdag zijn de beoordelingsgesprekken. Je hebt dan een gesprek waarin we je vorderingen en bevindingen bespreekt. We verwachten dat je op Github je tests en iteraties hebt beschreven. Belangrijk is dat je reflecteert op de leerdoelen van het vak.
-
-## Rubric
-
-De opdracht wordt beoordeeld aan de hand van onderstaande rubric. Je moet slagen voor het criterium (middenkolom) om het vak te halen.
-
-| Ontoereikend | Criteria                                                                                                                                                                                                                                                                                                                                | Verbetering |
-| ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-|              | Readme - In de beschrijving van het project staat de opdracht uitgelegd, is het probleem duidelijk beschreven en hoe het probleem is opgelost.                                                                                                                                                                                          |             |
-|              | Design Principles - Student laat zien hoe de Exclusive Design Principles zijn toegepast in het ontwerp. De principes study situation, prioritise identity, ignore conventions en add nonsense zijn goed uitgelegd. Aan de hand van de principes wordt duidelijk gemaakt hoe deze hebben bijgedragen aan het verbeteren van het ontwerp. |             |
-|              | User Needs - Er is een user scenario geschreven dat aansluit bij de identiteit van de test persoon. Er is een duidelijk en volledig user scenario geschreven dat antwoord geeft op de 4 w-vragen: Who? What? How? en Why?                                                                                                               |             |
-|              | Testen - Er is minimaal drie keer getest. Er is een verslaglegging van de tests gedaan waarin de test-opzet wordt behandeld en er is een duidelijke conclusie beschreven met do's en dont's over hoe je goed kan testen.                                                                                                                |             |
-|              | Testresultaten - Aan de hand van de tests wordt duidelijk gemaakt hoe deze hebben bijgedragen aan het verbeteren van het ontwerp of hoe dit een volgende keer beter of anders kan.                                                                                                                                                      |             |
-
-<!-- Add a link to your live demo in Github Pages 🌐-->
-
-<!-- ☝️ replace this description with a description of your own work -->
-
-<!-- replace the code in the /docs folder with your own, so you can showcase your work with GitHub Pages 🌍 -->
-
-<!-- Add a nice poster image here at the end of the week, showing off your shiny frontend 📸 -->
-
-<!-- Maybe a table of contents here? 📚 -->
-
-<!-- How about a section that describes how to install this project? 🤓 -->
-
-<!-- ...but how does one use this project? What are its features 🤔 -->
-
-<!-- Maybe a checklist of done stuff and stuff still on your wishlist? ✅ -->
-
-<!-- How about a license here? 📜 (or is it a licence?) 🤷 -->
+[demo 3](https://hoa0.github.io/human-centered-design-2122/week-3-v2/)
+[Proces week 3](https://github.com/Hoa0/human-centered-design-2122/wiki/Week-3---prototypen-&-testen)
