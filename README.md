@@ -38,15 +38,20 @@ En hoe bedient deze persoon een computer?
 
 ### week 1
 
-[demo 1](https://hoa0.github.io/human-centered-design-2122/week-1/)
+[demo 1](https://hoa0.github.io/human-centered-design-2122/week-1/) <br />
 [Proces week 1](https://github.com/Hoa0/human-centered-design-2122/wiki/Week-1---prototypen-&-testen)
 
 ### week 2
 
-[demo 2](https://hoa0.github.io/human-centered-design-2122/week-2/)
+[demo 2](https://hoa0.github.io/human-centered-design-2122/week-2/) <br />
 [Proces week 2](https://github.com/Hoa0/human-centered-design-2122/wiki/Week-2---prototypen-&-testen)
 
 ### week 3
 
-[demo 3](https://hoa0.github.io/human-centered-design-2122/week-3-v2/)
+[demo 3](https://hoa0.github.io/human-centered-design-2122/week-3-v2/) <br />
 [Proces week 3](https://github.com/Hoa0/human-centered-design-2122/wiki/Week-3---prototypen-&-testen)
+
+### week 4
+
+[demo 4](https://hoa0.github.io/human-centered-design-2122/week-4-v1/) <br />
+[Proces week 4](https://github.com/Hoa0/human-centered-design-2122/wiki/Week-4---prototype-&-theorie-verwerken)
