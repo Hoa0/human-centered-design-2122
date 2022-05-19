@@ -79,6 +79,7 @@ function emptyUl() {
     
   } else {
     tasksLeftToDo.style.backgroundImage="";
+    tasksLeftToDo.classList.remove("box");
     
   }
 }
