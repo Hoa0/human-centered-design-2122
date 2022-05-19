@@ -2,6 +2,8 @@
 
 Hi bekijk [eindproduct](https://hoa0.github.io/human-centered-design-2122/week-4-v1/)
 
+<img src="https://github.com/Hoa0/human-centered-design-2122/blob/main/docs/img/dnd-v4.png" width="400">
+
 > Human Centered Design is een methode voor het ontwerpen van gebruiksvriendelijke interactieve toepassingen.
 
 > What distinguishes Human-Centered Design from other problem-solving approaches is its obsessive focus on understanding the perspective of the person who experiences a problem, their needs, and whether the solution that has been designed for them is truly meeting their needs effectively or not. At its most effective, the very people who experience a problem the most are a constant part of the design process and when possible, become part of the design team itself. - [What Is Human-Centered Design?](https://medium.com/dc-design/what-is-human-centered-design-6711c09e2779)
