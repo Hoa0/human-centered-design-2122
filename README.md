@@ -18,17 +18,17 @@ Wat voor principes heb je gebruikt en getest? En is het leuk?
 
 ### week 1
 
-[demo 1](https://hoa0.github.io/human-centered-design-2122/week-1/) <br />
+[demo 1](https://hoa0.github.io/human-centered-design-2122/docs/prototype-v/week-1/) <br />
 [Proces week 1](https://github.com/Hoa0/human-centered-design-2122/wiki/Week-1---prototypen-&-testen)
 
 ### week 2
 
-[demo 2](https://hoa0.github.io/human-centered-design-2122/week-2/) <br />
+[demo 2](https://hoa0.github.io/human-centered-design-2122/docs/prototype-v/week-2/) <br />
 [Proces week 2](https://github.com/Hoa0/human-centered-design-2122/wiki/Week-2---prototypen-&-testen)
 
 ### week 3
 
-[demo 3](https://hoa0.github.io/human-centered-design-2122/week-3-v2/) <br />
+[demo 3](https://hoa0.github.io/human-centered-design-2122/docs/prototype-v/week-3-v2/) <br />
 [Proces week 3](https://github.com/Hoa0/human-centered-design-2122/wiki/Week-3---prototypen-&-testen)
 
 ### week 4
