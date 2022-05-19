@@ -1,23 +1,50 @@
+/* css styling for drag and drop */
+header {
+  color: #ffffff;
+  background-color: #470ca1;
+  padding: 2em;
+  margin-bottom: 1em;
+  text-align: center;
+}
+
 main {
   display: flex;
-  flex-direction: row;
-  background-color: rgb(255, 255, 255);
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1em;
 }
 
-header {
-  background-color: #caa100;
-  padding: 2em;
+/* styling btn add task */
+input#newEvent{
+  border: none;
+  background: hsl(0, 0%, 93%);
+  border-radius: .25rem;
+  padding: .75rem 1rem;
 }
 
+input#sendEvent{
+  background-color: #eae2b7;
+  color: black;
+  padding: .75rem 1rem;
+  border-radius: .25rem;
+}
+
+input#sendEvent:hover{
+  background-color: #fcbf49;
+}
+
+/* styling content container */
 section {
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding: 0 2em;
+  border:0.3em solid #c1c1c1;
+  border-radius: 0.3em;
 }
 
 section h2 {
-	text-decoration: underline;
 	text-align: center;
   	margin-bottom: 1em;
 }
@@ -34,10 +61,7 @@ section ul {
   	text-align: center;
 }
 
-section:nth-child(odd) {
-  background-color: #c1c1c1;
-}
-
+/* styling list item */
 li {
 	display: flex;
     flex-direction: column;
@@ -66,5 +90,29 @@ li.selected {
     pointer-events: none;
     z-index: 10;
 	outline: 0.3em dashed #caa100;
+}
+
+/* footer */
+footer{
+  text-align: center;
+}
+
+.styleSection{
+  background-color: #470ca1;
+}
+
+.box {
+  background: red;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  animation: backgroundChange 5s infinite;
+}
+
+@keyframes backgroundChange {
+  from {
+    background-color: rgb(222, 174, 1);
+  }
+  to {background-color: rgb(243, 239, 161);}
 }
 

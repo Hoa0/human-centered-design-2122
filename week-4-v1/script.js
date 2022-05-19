@@ -40,7 +40,7 @@ for (const container of containers) {
         // console.log(node)
         if (node.nodeName === 'SECTION') {
           const ul = node.querySelector('ul')
-          // van hier. Probleem was dat je het selectedItem noemde maar dat reflecteerde neit in je if. dus dat moest je hernoemen
+
           console.log(`for of event.path`,selectedItem)
           selectedItem.classList.remove('selected')
           selectedItem.style.left = ''
@@ -75,8 +75,11 @@ function emptyUl() {
   if (!tasksLeftToDo.childElementCount > 0) {
     tasksLeftToDo.style.backgroundImage = "url('https://sleepinggiantbrewing.ca/site-content/uploads/2019/01/beer-club-e1605742197844.png')";
     tasksLeftToDo.style.backgroundSize = "250px 300px";
+    tasksLeftToDo.classList.add("box");
+    
   } else {
     tasksLeftToDo.style.backgroundImage="";
+    
   }
 }
 
